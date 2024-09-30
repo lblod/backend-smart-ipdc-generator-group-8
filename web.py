@@ -1,3 +1,4 @@
+from config import TIKA_ENDPOINT
 from schemas import DecisionProcessingRequest, DecisionDatabaseQueryResponse
 from fastapi import Request
 from helpers import query
@@ -5,8 +6,6 @@ from typing import Any
 import requests
 import tempfile
 from escape_helpers import sparql_escape_uri
-from tika import parser
-
 
 
 def retrieve_raw_decision(uri: str, request: Request) -> DecisionDatabaseQueryResponse:
@@ -42,10 +41,9 @@ def process_raw_decision_to_raw_content(decision_raw: DecisionDatabaseQueryRespo
     for bind in decision_raw.results.bindings:
         url = bind.files.value
         r = requests.get(url, allow_redirects=True)
-        with tempfile.NamedTemporaryFile('wb') as f:
-            f.write(r.content)
-            parsed = parser.from_file(f.name)
-            content.append(parsed["content"])
+        tika_response = requests.put(TIKA_ENDPOINT, r.content, headers={
+            'Accept': 'text/plain'});
+        content.append(str(tika_response.content))
     return " ".join(content)
 
 def ai_parse(raw_content: str) -> Any:
