@@ -58,12 +58,12 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
 
 
 @app.get("/hello")
-async def hello():
+def hello():
     return {"message": "Hello from mu-python-ml!"}
 
 
 @app.post("/decision")
-async def request_processing(
+def request_processing(
     body: DecisionProcessingRequest,
     request: Request
 ) -> ProcessingResponse:
