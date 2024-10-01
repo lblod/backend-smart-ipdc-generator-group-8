@@ -52,8 +52,12 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
     response = requests.post(AI_ENDPOINT, json={
         'decision_text': raw_content
     }, timeout=10000)
+    converted = {
+        'besluitendatabank_uri': uri,
+        **response.json(),
+    }
     return IPDCEntry(
-        **response.json()
+        **converted
     )
 
 
