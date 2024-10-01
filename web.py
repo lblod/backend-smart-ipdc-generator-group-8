@@ -1,5 +1,5 @@
 from config import TIKA_ENDPOINT, AI_ENDPOINT
-from schemas import DecisionProcessingRequest, DecisionDatabaseQueryResponse, IPDCEntrySave, ProcessingResponse, IPDCEntry, RetrieveResponse
+from schemas import DecisionProcessingRequest, DecisionDatabaseQueryResponse, ProcessingResponse, IPDCEntry, RetrieveResponse
 from fastapi import Request
 from helpers import query
 from typing import Any

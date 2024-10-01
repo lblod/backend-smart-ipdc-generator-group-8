@@ -35,7 +35,7 @@ class DecisionDatabaseQueryResponse(BaseModel):
     head: DecisionDatabaseQueryHead
 
 
-class IPDCBaseType:
+class IPDCBaseType(BaseModel):
     description: str
     name: Optional[str]
 
@@ -48,7 +48,7 @@ class IPDCCost(IPDCBaseType):
     pass
 
 
-class IPDCProof:
+class IPDCProof(BaseModel):
     description: str
     name: Optional[str]
 
