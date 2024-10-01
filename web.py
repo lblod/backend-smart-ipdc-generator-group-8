@@ -52,9 +52,17 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
     response = requests.post(AI_ENDPOINT, json={
         'decision_text': raw_content
     }, timeout=10000)
+    data = response.json()
     converted = {
         'besluitendatabank_uri': uri,
-        **response.json(),
+        'description': data.get('description', ''),
+        'name': data.get('name', ''),
+        'procedure': data.get('procedure', []),
+        'cost': data.get('cost', []),
+        'condition': data.get('condition', []),
+        'entry_theme': data.get('theme', []),
+        'entry_type': data.get('type', []),
+        'entry_doelgroep': data.get('doelgroep', [])
     }
     return IPDCEntry(
         **converted

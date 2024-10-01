@@ -119,8 +119,9 @@ class IPDCEntry(BaseModel):
     procedure: List[IPDCProcedure] = []
     cost: List[IPDCCost] = []
     condition: List[IPDCCondition] = []
-    entry_theme: Optional[ThemaCategories] = None
-    entry_type: Optional[TypeCategories] = None
+    entry_theme: List[ThemaCategories] = []
+    entry_type: List[TypeCategories] = []
+    entry_doelgroep: List[DoelgroepCategories] = []
     bevoegde_overheden: List[str] = []
     uitvoerende_overheden: List[str] = []
     bevoegde_bestuursniveau: Optional[BevoegdBestuursniveauCategories] = None
