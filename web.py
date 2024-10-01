@@ -1,4 +1,4 @@
-from config import TIKA_ENDPOINT
+from config import TIKA_ENDPOINT, AI_ENDPOINT
 from schemas import DecisionProcessingRequest, DecisionDatabaseQueryResponse, IPDCEntrySave, ProcessingResponse, IPDCEntry, RetrieveResponse
 from fastapi import Request
 from helpers import query
@@ -49,6 +49,9 @@ def process_raw_decision_to_raw_content(decision_raw: DecisionDatabaseQueryRespo
 
 def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
     """ Here we call the AI service, dummy for now """
+    response = requests.post(AI_ENDPOINT, json={
+        'decision_text': raw_content
+    })
     return IPDCEntry(
         description="test",
         besluitendatabank_uri=uri,
