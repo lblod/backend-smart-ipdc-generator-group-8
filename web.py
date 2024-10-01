@@ -1,5 +1,5 @@
 from config import TIKA_ENDPOINT
-from schemas import DecisionProcessingRequest, DecisionDatabaseQueryResponse
+from schemas import DecisionProcessingRequest, DecisionDatabaseQueryResponse, IPDCEntrySave, ProcessingResponse, IPDCEntry, RetrieveResponse
 from fastapi import Request
 from helpers import query
 from typing import Any
@@ -46,8 +46,14 @@ def process_raw_decision_to_raw_content(decision_raw: DecisionDatabaseQueryRespo
         content.append(str(tika_response.content))
     return " ".join(content)
 
-def ai_parse(raw_content: str) -> Any:
-    return None
+
+def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
+    """ Here we call the AI service, dummy for now """
+    return IPDCEntry(
+        description="test",
+        besluitendatabank_uri=uri,
+        name="test"
+    )
 
 
 @app.get("/hello")
@@ -59,8 +65,12 @@ async def hello():
 async def request_processing(
     body: DecisionProcessingRequest,
     request: Request
-):
+) -> ProcessingResponse:
     decision_raw = retrieve_raw_decision(body.uri, request)
     raw_content = process_raw_decision_to_raw_content(decision_raw)
     ipdc_entry = ai_parse(raw_content)
-    return {"message": "Hello from mu-python-ml!"}
+    return ProcessingResponse(
+        entry=ipdc_entry,
+        raw_content=raw_content
+    )
+
