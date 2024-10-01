@@ -129,6 +129,7 @@ class IPDCEntry(BaseModel):
 
 class ProcessingResponse(BaseModel):
     entry: IPDCEntry
+    raw_content: str
 
 
 class RetrieveResponse(BaseModel):

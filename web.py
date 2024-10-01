@@ -53,9 +53,7 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
         'decision_text': raw_content
     })
     return IPDCEntry(
-        description="test",
-        besluitendatabank_uri=uri,
-        name="test"
+        **response.json()
     )
 
 
