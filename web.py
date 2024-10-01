@@ -51,7 +51,7 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
     """ Here we call the AI service, dummy for now """
     response = requests.post(AI_ENDPOINT, json={
         'decision_text': raw_content
-    })
+    }, timeout=10000)
     return IPDCEntry(
         **response.json()
     )
