@@ -71,7 +71,7 @@ async def request_processing(
 ) -> ProcessingResponse:
     decision_raw = retrieve_raw_decision(body.uri, request)
     raw_content = process_raw_decision_to_raw_content(decision_raw)
-    ipdc_entry = ai_parse(raw_content)
+    ipdc_entry = ai_parse(raw_content, body.uri)
     return ProcessingResponse(
         entry=ipdc_entry,
         raw_content=raw_content
