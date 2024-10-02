@@ -1,3 +1,5 @@
+from numpy.dual import solve
+
 from config import TIKA_ENDPOINT, AI_ENDPOINT
 from schemas import DecisionProcessingRequest, DecisionDatabaseQueryResponse, ProcessingResponse, IPDCEntry, RetrieveResponse
 from fastapi import Request
@@ -58,6 +60,7 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
     }, timeout=10000)
     data = response.json()
     print(response, data)
+    tpe = solve_unicode(data.get('type')[0]) if data.get('type') is not None else None
     converted = {
         'besluitendatabank_uri': uri,
         'description': data.get('description', ''),
@@ -66,7 +69,7 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
         'cost': data.get('cost', []),
         'condition': data.get('condition', []),
         'entry_theme': [solve_unicode(e) for e in data.get('theme', [])],
-        'entry_type':  [solve_unicode(e) for e in data.get('type', [''])][0],
+        'entry_type': tpe,
         'entry_doelgroep':  [solve_unicode(e) for e in data.get('doelgroep', [])]
     }
     return IPDCEntry(

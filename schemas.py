@@ -124,8 +124,8 @@ class IPDCEntry(BaseModel):
     entry_doelgroep: List[DoelgroepCategories] = []
     bevoegde_overheden: List[str] = []
     uitvoerende_overheden: List[str] = []
-    bevoegde_bestuursniveau: Optional[BevoegdBestuursniveauCategories] = None
-    uitvoerende_bestuursniveau: Optional[UitvoerendBestuursniveauCategories] = None
+    bevoegde_bestuursniveau: List[BevoegdBestuursniveauCategories] = []
+    uitvoerende_bestuursniveau: List[UitvoerendBestuursniveauCategories] = []
 
 
 class ProcessingResponse(BaseModel):
