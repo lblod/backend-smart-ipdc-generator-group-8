@@ -120,7 +120,7 @@ class IPDCEntry(BaseModel):
     cost: List[IPDCCost] = []
     condition: List[IPDCCondition] = []
     entry_theme: List[ThemaCategories] = []
-    entry_type: List[TypeCategories] = []
+    entry_type: Optional[TypeCategories] = None
     entry_doelgroep: List[DoelgroepCategories] = []
     bevoegde_overheden: List[str] = []
     uitvoerende_overheden: List[str] = []

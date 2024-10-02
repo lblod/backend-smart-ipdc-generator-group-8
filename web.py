@@ -47,6 +47,10 @@ def process_raw_decision_to_raw_content(decision_raw: DecisionDatabaseQueryRespo
     return " ".join(content)
 
 
+def solve_unicode(inp: str) -> str:
+    return inp.replace('\x91', 'ë')
+
+
 def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
     """ Here we call the AI service, dummy for now """
     response = requests.post(AI_ENDPOINT, json={
@@ -61,9 +65,9 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
         'procedure': data.get('procedure', []),
         'cost': data.get('cost', []),
         'condition': data.get('condition', []),
-        'entry_theme': data.get('theme', []),
-        'entry_type': data.get('type', []),
-        'entry_doelgroep': data.get('doelgroep', [])
+        'entry_theme': [solve_unicode(e) for e in data.get('theme', [])],
+        'entry_type':  [solve_unicode(e) for e in data.get('type', [''])][0],
+        'entry_doelgroep':  [solve_unicode(e) for e in data.get('doelgroep', [])]
     }
     return IPDCEntry(
         **converted
