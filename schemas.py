@@ -81,7 +81,7 @@ class TypeCategories(Enum):
     BEWIJS="Bewijs"
     FINANCIEEL_VOORDEEL="Financieel voordeel"
     FINANCIELE_VEPLICHTING="Financiële verplichting"
-    INFRASTRUCTUUR_EN_MATERIAAL="Infrastructuur en Materiaal"
+    INFRASTRUCTUUR_EN_MATERIAAL="Infrastructuur en materiaal"
     TOELATING="Toelating"
     VOORWERP="Voorwerp"
 
