@@ -61,6 +61,8 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
     data = response.json()
     print(response, data)
     tpe = solve_unicode(data.get('type')[0]) if data.get('type') is not None else None
+    if tpe in ['Cultuur', 'Sport en Vrije Tijd']:  # oooppps....
+        tpe = 'Cultuur, Sport en Vrije Tijd'
     converted = {
         'besluitendatabank_uri': uri,
         'description': data.get('description', ''),

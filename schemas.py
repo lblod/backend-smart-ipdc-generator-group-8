@@ -77,22 +77,22 @@ class ThemaCategories(Enum):
 
 
 class TypeCategories(Enum):
-    ADVIES_EN_BEGELEIDING="Advies en Begeleiding"
+    ADVIES_EN_BEGELEIDING="Advies en begeleiding"
     BEWIJS="Bewijs"
-    FINANCIEEL_VOORDEEL="Financieel Voordeel"
-    FINANCIELE_VEPLICHTING="Financiële Verplichting"
+    FINANCIEEL_VOORDEEL="Financieel voordeel"
+    FINANCIELE_VEPLICHTING="Financiële verplichting"
     INFRASTRUCTUUR_EN_MATERIAAL="Infrastructuur en Materiaal"
     TOELATING="Toelating"
     VOORWERP="Voorwerp"
 
 
 class DoelgroepCategories(Enum):
-    ANDERE_ORGANISATIE="Andere Organisatie"
+    ANDERE_ORGANISATIE="Andere organisatie"
     BURGER="Burger"
-    LOKAAL_BESTUUR="Lokaal Bestuur"
+    LOKAAL_BESTUUR="Lokaal bestuur"
     ONDERNEMING="Onderneming"
     VERENIGING="Vereniging"
-    VLAAMSE_OVERHEID="Vlaamse Overheid"
+    VLAAMSE_OVERHEID="Vlaamse overheid"
 
 
 class BevoegdBestuursniveauCategories(Enum):
