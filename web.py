@@ -53,6 +53,7 @@ def ai_parse(raw_content: str, uri: str) -> IPDCEntry:
         'decision_text': raw_content
     }, timeout=10000)
     data = response.json()
+    print(response, data)
     converted = {
         'besluitendatabank_uri': uri,
         'description': data.get('description', ''),
